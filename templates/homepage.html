@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thala For A Reason</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <style>
+        body {
+            background-image: url({{ url_for('static', filename='images/bg.png') }});
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            text-align: center;
+        }
+        .card{
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 25px;
+            border: 2px solid white;
+            width: 50vw;
+            height: 40vh;
+        }
+        p{
+            color: black;
+            font-family: "Montserrat";
+            font-size: 5vh;
+            margin-bottom: 1vh;
+        }
+        .field{
+            font-family: "Montserrat";
+            font-size: 5vh;
+            border-radius: 35px;
+            width: 40vw;
+            text-align:center;
+        }
+        .button{
+            font-family: "Montserrat";
+            font-size: 5vh;
+            color: red;
+            background: white;
+            border-radius: 35px;
+            width: 20vw;
+        }
+        .button:hover{
+            color:white;
+            background: linear-gradient(45deg, red, blue);
+        }
+    </style>
+    <script>
+            document.getElementById('reasonForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const reason = document.getElementById('reasonInput').value;
+            fetch('/thala', {
+                method: 'POST',
+                body: JSON.stringify({ reason }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .catch(error => {
+                console.error('Error sending request to /thala:', error);
+            });
+        });
+    </script>
+</head>
+    <body>
+        <div class="card">
+            <p>Welcome to "Thala For A Reason"!</p>
+            <form action="{{ url_for('thala_response') }}" method="POST" id="reasonForm">
+                <input class="field" type="text" name="prompt" placeholder="Enter your prompt" required>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thala For A Reason</title>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <style>
+            body {
+                background-image: url({{ url_for('static', filename='images/bg.png') }});
+                background-size: cover;
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            form {
+                text-align: center;
+            }
+            .card{
+                text-align: center;
+                background-color: rgba(255, 255, 255, 0.6);
+                border-radius: 25px;
+                border: 2px solid white;
+                width: 50vw;
+                height: 40vh;
+            }
+            .content-text{
+                color: white;
+                font-family: "Montserrat";
+                font-size: 5vh;
+                margin-bottom: 1vh;
+                font-weight: 800;
+                text-align: center;
+                word-wrap: break-word;
+            }
+            .field{
+                font-family: "Montserrat";
+                font-size: 5vh;
+            }
+            .button{
+                font-family: "Montserrat";
+                font-size: 5vh;
+            }
+            .thala{
+                width: auto;
+                height: 100vh;
+            }
+            .button{
+                position: absolute;
+                top: 1%;
+                right:1%;
+                font-family: "Montserrat";
+                font-size: 5vh;
+                color: red;
+                background: white;
+                border-radius: 35px;
+                width: 10vh;
+                height: 10vh;
+                text-align: center;
+                justify-content: center;
+            }
+            .button:hover{
+                color:white;
+                background: linear-gradient(45deg, red, blue);
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <video class="thala" autoplay loop>
+                <source src="{{ url_for('static', filename='videos/thala.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+        <div style="position: absolute; text-align: center; bottom: 5%;">
+            <p class="content-text">{{result}}</p>
+            <p class="content-text"># Thala For a Reason</p>
+        </div>
+    </body>
+</html>
