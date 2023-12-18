@@ -1,7 +1,11 @@
 from openai import OpenAI
 from flask import Flask, request, jsonify, render_template
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+
+load_dotenv()
 
 @app.route('/', methods=['GET', 'POST'])
 def thala_homepage():
@@ -22,7 +26,7 @@ def thala_response():
 
             Input: {input_string}
         """
-        client = OpenAI(api_key="")
+        client = OpenAI(api_key=os.getenv('API_KEY'))
         response = client.chat.completions.create(
             model="gpt-4-vision-preview",
             messages=[
